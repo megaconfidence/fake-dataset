@@ -9,5 +9,10 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {}
+  "dependencies": {
+    "bson-objectid": "^2.0.3",
+    "faker": "^5.5.3",
+    "json2csv": "^5.0.7",
+    "nanoid": "^4.0.0"
+  }
 }
