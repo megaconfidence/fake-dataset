@@ -10,13 +10,11 @@ const { Parser } = require('json2csv');
       id: faker.random.alphaNumeric(5),
       name: faker.company.companyName()+ ' Hotels',
       address: faker.address.streetAddress(true),
-      pets: faker.datatype.boolean(),
-      adults: faker.datatype.number({min: 1, max: 5}),
-      children: faker.datatype.number({min: 1, max: 5}),
+      guests: faker.datatype.number({min: 1, max: 5}),
       nights: faker.datatype.number({min: 1, max: 10}),
       price: faker.finance.amount(20),
       description: faker.lorem.sentences(faker.datatype.number({min: 1, max: 10})),
-      image: 'https://placeimg.com/640/480/arch',
+      image: 'https://placeimg.com/640/480/arch?s='+faker.datatype.number({min: 1, max: 1000}),
       feature: faker.random.arrayElement(features),
       rating: faker.datatype.number({min: 1, max: 5}),
     };
@@ -39,11 +37,11 @@ const { Parser } = require('json2csv');
     return {
       hotel,
       nights,
-      checkin,
       customer,
-      checkout,
       price: nights*hotelPrice,
       id: faker.random.alphaNumeric(5),
+      checkin: checkin.toISOString().split('T')[0],
+      checkout: checkout.toISOString().split('T')[0],
       guests: faker.datatype.number({min: 1, max: 10}),
       notes: faker.lorem.sentences(faker.datatype.number({min: 1, max: 5})),
     };
@@ -75,7 +73,7 @@ const { Parser } = require('json2csv');
   
   const path = '../output/hotel-reservation';
 
-  fs.mkdir(path, (e) => {if(e)throw(e)})
+  // fs.mkdir(path, (e) => {if(e)throw(e)})
 
   fs.writeFile(path+'/hotels.csv', p1.parse(hotels), (err) => {
     if (err) throw err;
