@@ -1,7 +1,9 @@
 # Outputs
 output/**/*.csv
 output/**/*.json
-
+scripts/random.js
+*/**/.DS_Store
+.DS_Store
 # Logs
 logs
 *.log
